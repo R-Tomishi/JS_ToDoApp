@@ -5,13 +5,18 @@ const onClickAdd = () => {
   const inputText = document.getElementById("add-text").value;
   document.getElementById("add-text").value = "";
 
+  createIncompleteList(inputText);
+};
+
+// 未完了リストに追加する関数
+const createIncompleteList = (text) => {
   // ul生成
   const ul = document.createElement("ul");
   ul.className = "list-row";
 
   // liタグ生成
   const li = document.createElement("li");
-  li.innerText = inputText;
+  li.innerText = text;
 
   // button(完了)タグを生成
   const completeButton = document.createElement("button");
@@ -42,7 +47,7 @@ const onClickAdd = () => {
 
       // テキストを取得
       const text = backButton.parentNode.firstElementChild.innerText;
-      console.log(text);
+      createIncompleteList(text);
     });
 
     // divタグの子要素に各要素を作成
@@ -75,9 +80,6 @@ const onClickAdd = () => {
   // 未完了リストに追加
   document.getElementById("incomplete-list").appendChild(ul);
 };
-
-// 未完了リストに追加する関数
-
 document
   .getElementById("add-button")
   .addEventListener("click", () => onClickAdd());
